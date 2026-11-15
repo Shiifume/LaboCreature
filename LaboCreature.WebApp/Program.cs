@@ -1,3 +1,6 @@
+using LaboCreature.DAL;
+using Microsoft.EntityFrameworkCore;
+
 namespace LaboCreature.WebApp
 {
     public class Program
@@ -5,6 +8,13 @@ namespace LaboCreature.WebApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<CreatureDBContext>(options =>
+            options.UseSqlServer(
+                builder.Configuration.GetConnectionString("default")
+                )
+            );
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
