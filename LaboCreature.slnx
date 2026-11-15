@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="LaboCreature.BLL/LaboCreature.BLL.csproj" />
+  <Project Path="LaboCreature.DAL/LaboCreature.DAL.csproj" />
+  <Project Path="LaboCreature.WebApp/LaboCreature.WebApp.csproj" />
+</Solution>
