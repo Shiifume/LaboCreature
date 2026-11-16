@@ -38,7 +38,7 @@ namespace LaboCreature.DAL.Repository
 
         public MemberEntity? GetByEmail(string email)
         {
-            return _context.Members.FirstOrDefault(m => m.Email.Equals(email, StringComparison.CurrentCultureIgnoreCase));
+            return _context.Members.FirstOrDefault(m => m.Email.ToLower() == email.ToLower());
         }
 
         public MemberEntity? GetById(int id)
@@ -48,7 +48,7 @@ namespace LaboCreature.DAL.Repository
 
         public MemberEntity? GetByUsername(string username)
         {
-            return _context.Members.FirstOrDefault(m => m.Username.Equals(username, StringComparison.CurrentCultureIgnoreCase));
+            return _context.Members.FirstOrDefault(m => m.Username.ToLower() == username.ToLower());
         }
 
         public bool UpdateEmail(int memberId, string newEmail)

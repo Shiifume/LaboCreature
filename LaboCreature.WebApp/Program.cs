@@ -1,4 +1,10 @@
+using LaboCreature.BLL.Helpers;
+using LaboCreature.BLL.Interfaces;
+using LaboCreature.BLL.Services;
 using LaboCreature.DAL;
+using LaboCreature.DAL.Interfaces;
+using LaboCreature.DAL.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 namespace LaboCreature.WebApp
@@ -15,6 +21,18 @@ namespace LaboCreature.WebApp
                 )
             );
 
+            builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+            builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                            .AddCookie(options =>
+                            {
+                                options.LoginPath = "/Auth/Login";
+                                options.AccessDeniedPath = "/Auth/AccessDenied";
+                                options.ExpireTimeSpan = TimeSpan.FromDays(7);
+                            });
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
@@ -30,6 +48,8 @@ namespace LaboCreature.WebApp
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

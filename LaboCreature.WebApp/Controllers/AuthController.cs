@@ -1,0 +1,91 @@
+﻿using LaboCreature.BLL.Exceptions;
+using LaboCreature.BLL.Interfaces;
+using LaboCreature.BLL.Models;
+using LaboCreature.WebApp.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata;
+using System.Security.Claims;
+
+namespace LaboCreature.WebApp.Controllers
+{
+    public class AuthController : Controller
+    {
+
+        private IAuthService _authService;
+
+        public AuthController(IAuthService service)
+        {
+            _authService = service;
+        }
+        
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(MemberRegisterForm data)
+        {
+            if(!ModelState.IsValid)
+                return View(data);
+
+            RegisterMemberModel memberToRegister = new()
+            {
+                Username = data.Username.Trim().ToLower(),
+                Email = data.Email.Trim().ToLower(),
+                Password = data.Password
+            };
+
+            try
+            {
+                int memberId = _authService.CreateMember(memberToRegister);
+                await CreateMemberSessionAsync(memberId, memberToRegister.Username, memberToRegister.Email);
+                return RedirectToAction("Login", "Auth");
+            }
+            catch(MemberEmailAlreadyExists e)
+            {
+                ModelState.AddModelError(nameof(data.Email), e.Message);
+                return View(data);
+            }
+            catch(MemberUsernameAlreadyExists e)
+            {
+                ModelState.AddModelError(nameof(data.Username), e.Message);
+                return View(data);
+            }
+        }
+
+        private async Task CreateMemberSessionAsync(int memberId, string username, string email)
+        {
+            List<Claim> claims = new()
+            {
+                new Claim(ClaimTypes.NameIdentifier, memberId.ToString()),
+                new Claim(ClaimTypes.Name, username),
+                new Claim(ClaimTypes.Email, email)
+            };
+
+            var identity = new ClaimsIdentity(
+                claims,
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(identity));
+        }
+    }
+}
