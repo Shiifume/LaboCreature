@@ -12,11 +12,11 @@ namespace LaboCreature.WebApp.Models
         public string Email { get; set; }
         [Required]
         [DataType(DataType.Text)]
-        [MinLength(5)]
+        [MinLength(5, ErrorMessage ="Username must be at least 5 characters.")]
         public string Username { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        [MinLength(7)]
+        [MinLength(7, ErrorMessage ="Password must be at least 7 characters.")]
         public string Password { get; set; }
         [Required]
         [DataType(DataType.Password)]

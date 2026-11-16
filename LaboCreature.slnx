@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Éléments de solution/">
+    <File Path="global.json" />
+  </Folder>
   <Project Path="LaboCreature.BLL/LaboCreature.BLL.csproj" />
   <Project Path="LaboCreature.DAL/LaboCreature.DAL.csproj" />
   <Project Path="LaboCreature.WebApp/LaboCreature.WebApp.csproj" />

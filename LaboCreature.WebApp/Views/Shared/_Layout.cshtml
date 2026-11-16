@@ -11,6 +11,20 @@
 </head>
 <body>
     <header>
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <div>
+                Connected as: @User.Identity.Name
+                <br />
+                User ID: @User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value
+                <br />
+                Email: @User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value
+            </div>
+        }
+        else
+        {
+            <div>Not connected</div>
+        }
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LaboCreature.WebApp</a>
@@ -25,6 +39,14 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register">Create an account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <form asp-controller="Auth" asp-action="Logout" method="post">
+                                <a type="submit">Logout</a
+                            </form>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

@@ -1,6 +1,7 @@
 ﻿using LaboCreature.BLL.Exceptions;
 using LaboCreature.BLL.Interfaces;
 using LaboCreature.BLL.Models;
+using LaboCreature.WebApp.Mappers;
 using LaboCreature.WebApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -19,22 +20,41 @@ namespace LaboCreature.WebApp.Controllers
         {
             _authService = service;
         }
-        
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         [HttpGet]
         public IActionResult Login()
         {
+            if (User.Identity?.IsAuthenticated == true)
+                return RedirectToAction("Index", "Home");
+
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(MemberLoginForm data)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            MemberModel? memberLogged = _authService.Login(data.ToLoginModel());
+            if (memberLogged is null)
+            {
+                ModelState.AddModelError("", "Email and password combination is invalid");
+                return View(data);
+            }
+
+            await CreateMemberSessionAsync(memberLogged.Id, memberLogged.Username, memberLogged.Email);
+
+            return RedirectToAction("Index", "Home");
         }
 
 
         [HttpGet]
         public IActionResult Register()
         {
+            if (User.Identity?.IsAuthenticated == true)
+                return RedirectToAction("Index", "Home");
+
             return View();
         }
 
@@ -56,7 +76,7 @@ namespace LaboCreature.WebApp.Controllers
             {
                 int memberId = _authService.CreateMember(memberToRegister);
                 await CreateMemberSessionAsync(memberId, memberToRegister.Username, memberToRegister.Email);
-                return RedirectToAction("Login", "Auth");
+                return RedirectToAction("Index", "Home");
             }
             catch(MemberEmailAlreadyExists e)
             {
@@ -86,6 +106,17 @@ namespace LaboCreature.WebApp.Controllers
             await HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(identity));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {             
+            await HttpContext.SignOutAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme
+            );
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

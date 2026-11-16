@@ -23,7 +23,7 @@ namespace LaboCreature.BLL.Services
         {
             if(_repo.GetByEmail(model.Email) is not null)
             {
-                throw new MemberEmailAlreadyExists("An account already exists with this account.");
+                throw new MemberEmailAlreadyExists("An account already exists with this email.");
             }
             else if(_repo.GetByUsername(model.Username) is not null)
             {
