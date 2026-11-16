@@ -15,7 +15,6 @@ namespace LaboCreature.WebApp
                 )
             );
 
-
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
