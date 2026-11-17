@@ -6,7 +6,7 @@ using LaboCreature.DAL.Interfaces;
 
 
 
-namespace LaboCreature.DAL.Repository 
+namespace LaboCreature.DAL.Repositories
 {
     public class MemberRepository : IMemberRepository
     {

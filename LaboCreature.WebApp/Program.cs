@@ -3,7 +3,7 @@ using LaboCreature.BLL.Interfaces;
 using LaboCreature.BLL.Services;
 using LaboCreature.DAL;
 using LaboCreature.DAL.Interfaces;
-using LaboCreature.DAL.Repository;
+using LaboCreature.DAL.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +24,7 @@ namespace LaboCreature.WebApp
             builder.Services.AddScoped<IMemberRepository, MemberRepository>();
             builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
             builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<IMemberService, MemberService>();
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                             .AddCookie(options =>
