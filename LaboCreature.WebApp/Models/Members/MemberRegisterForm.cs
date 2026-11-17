@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace LaboCreature.WebApp.Models
+namespace LaboCreature.WebApp.Models.Members
 {
     public class MemberRegisterForm
     {

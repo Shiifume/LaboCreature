@@ -1,5 +1,5 @@
 ﻿using LaboCreature.BLL.Models;
-using LaboCreature.WebApp.Models;
+using LaboCreature.WebApp.Models.Members;
 
 namespace LaboCreature.WebApp.Mappers
 {

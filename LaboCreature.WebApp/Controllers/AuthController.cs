@@ -2,7 +2,7 @@
 using LaboCreature.BLL.Interfaces;
 using LaboCreature.BLL.Models;
 using LaboCreature.WebApp.Mappers;
-using LaboCreature.WebApp.Models;
+using LaboCreature.WebApp.Models.Members;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -78,12 +78,12 @@ namespace LaboCreature.WebApp.Controllers
                 await CreateMemberSessionAsync(memberId, memberToRegister.Username, memberToRegister.Email);
                 return RedirectToAction("Index", "Home");
             }
-            catch(MemberEmailAlreadyExists e)
+            catch(MemberEmailAlreadyExistsException e)
             {
                 ModelState.AddModelError(nameof(data.Email), e.Message);
                 return View(data);
             }
-            catch(MemberUsernameAlreadyExists e)
+            catch(MemberUsernameAlreadyExistsException e)
             {
                 ModelState.AddModelError(nameof(data.Username), e.Message);
                 return View(data);

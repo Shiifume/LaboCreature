@@ -1,4 +1,4 @@
-﻿namespace LaboCreature.WebApp.Models
+﻿namespace LaboCreature.WebApp.Models.Members
 {
     public class MemberView
     {

@@ -86,7 +86,7 @@ namespace LaboCreature.Test.Services
             };
 
             //act
-            var ex = Assert.Throws<MemberUsernameAlreadyExists>(
+            var ex = Assert.Throws<MemberUsernameAlreadyExistsException>(
                 () => service.CreateMember(memberToRegister)
                 );
 
@@ -123,7 +123,7 @@ namespace LaboCreature.Test.Services
             };
 
             //act
-            var ex = Assert.Throws<MemberEmailAlreadyExists>(
+            var ex = Assert.Throws<MemberEmailAlreadyExistsException>(
                 () => service.CreateMember(memberToRegister)
                 );
 

@@ -10,14 +10,26 @@ namespace LaboCreature.BLL.Exceptions
         public MemberException(string message) : base(message) { }
     }
 
-    public class MemberEmailAlreadyExists : MemberException
+    public class MemberEmailAlreadyExistsException : MemberException
     {
-        public MemberEmailAlreadyExists() : base() { }
-        public MemberEmailAlreadyExists(string message) : base(message) { }
+        public MemberEmailAlreadyExistsException() : base() { }
+        public MemberEmailAlreadyExistsException(string message) : base(message) { }
     }
-    public class MemberUsernameAlreadyExists : MemberException
+    public class MemberUsernameAlreadyExistsException : MemberException
     {
-        public MemberUsernameAlreadyExists() : base() { }
-        public MemberUsernameAlreadyExists(string message) : base(message) { }
+        public MemberUsernameAlreadyExistsException() : base() { }
+        public MemberUsernameAlreadyExistsException(string message) : base(message) { }
+    }
+
+    public class MemberNotFoundException : MemberException
+    {
+        public MemberNotFoundException() : base() { }
+        public MemberNotFoundException(string message) : base(message){ }
+    }
+
+    public class MemberPasswordInvalidException : MemberException
+    {
+        public MemberPasswordInvalidException() : base() { }
+        public MemberPasswordInvalidException(string message) : base(message) { }
     }
 }

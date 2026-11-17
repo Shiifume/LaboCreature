@@ -1,4 +1,4 @@
-@model LaboCreature.WebApp.Models.MemberView
+@model LaboCreature.WebApp.Models.Members.MemberView
 
 @{
     ViewData["Title"] = "Member Profile";
@@ -14,6 +14,9 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Username)
+        </dd>
+        <dd>
+            <a asp-action="ChangeUsername" asp-controller="Member">Change username</a>
         </dd>
     </dl>
         <dt class = "col-sm-2">

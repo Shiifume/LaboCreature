@@ -1,0 +1,36 @@
+@model LaboCreature.WebApp.Models.Members.MemberUpdateUsernameForm
+
+@{
+    ViewData["Title"] = "Username Change";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4></h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ChangeUsername" method="POST">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="NewUsername" class="control-label"></label>
+                <input asp-for="NewUsername" class="form-control" />
+                <span asp-validation-for="NewUsername" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">Password Confirmation</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ChangeUsername" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Details">Cancel</a>
+</div>
