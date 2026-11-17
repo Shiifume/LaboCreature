@@ -4,5 +4,6 @@
   </Folder>
   <Project Path="LaboCreature.BLL/LaboCreature.BLL.csproj" />
   <Project Path="LaboCreature.DAL/LaboCreature.DAL.csproj" />
+  <Project Path="LaboCreature.Test/LaboCreature.Test.csproj" Id="de8aff39-f2f4-403d-b9e7-d9f411f55d44" />
   <Project Path="LaboCreature.WebApp/LaboCreature.WebApp.csproj" />
 </Solution>
