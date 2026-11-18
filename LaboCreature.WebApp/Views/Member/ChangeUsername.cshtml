@@ -15,8 +15,9 @@
 
             <div class="form-group">
                 <label asp-for="NewUsername" class="control-label"></label>
-                <input asp-for="NewUsername" class="form-control" />
+                <input asp-for="NewUsername" class="form-control" id="username"/>
                 <span asp-validation-for="NewUsername" class="text-danger"></span>
+                <span id="usernameAvailability" class="small"></span>
             </div>
 
             <div class="form-group">
@@ -34,3 +35,7 @@
 <div>
     <a asp-action="Details">Cancel</a>
 </div>
+
+@section Scripts{
+    <script src="~/js/usernameAvailability.js"></script>
+}

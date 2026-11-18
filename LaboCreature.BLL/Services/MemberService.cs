@@ -32,6 +32,14 @@ namespace LaboCreature.BLL.Services
             return member.ToModel();
         }
 
+        public MemberModel? GetByUsername(string username)
+        {
+            MemberEntity? member = _repo.GetByUsername(username);
+            if (member is null)
+                return null;
+
+            return member.ToModel();
+        }
         public void ChangeUsername(int id, string newUsername, string password)
         {
             MemberEntity? member = _repo.GetById(id);
@@ -65,5 +73,20 @@ namespace LaboCreature.BLL.Services
 
             _repo.UpdateEmail(id, newEmail);
         }
+
+        public void ChangePassword(int id, string newPassword, string password)
+        {
+            MemberEntity? member = _repo.GetById(id);
+            if (member is null)
+                throw new MemberNotFoundException("Member do not exist");
+
+            if(!_hasher.Verify(password, member.PasswordHash))
+                throw new MemberPasswordInvalidException("Invalid password");
+
+            string passwordHash = _hasher.HashPassword(newPassword);
+
+            _repo.UpdatePassword(id, passwordHash);
+        }
+
     }
 }
