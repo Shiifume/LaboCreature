@@ -72,5 +72,51 @@ namespace LaboCreature.WebApp.Controllers
             TempData["message"] = "Username succesfully changed";
             return RedirectToAction(nameof(Details));
         }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult ChangeEmail()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeEmail(MemberUpdateEmailForm data)
+        {
+            if(!ModelState.IsValid)
+                return View(data);
+
+            int id = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
+
+            try
+            {
+                _memberService.ChangeEmail(id, data.NewEmail, data.Password);
+            }
+            catch (MemberNotFoundException)
+            {
+                TempData["message"] = "Error. This member does not exist.";
+
+                await HttpContext.SignOutAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme
+                );
+                return RedirectToAction("Index", "Home");
+            }
+            catch (MemberEmailAlreadyExistsException ex)
+            {
+                ModelState.AddModelError(nameof(data.NewEmail), ex.Message);
+                return View(data);
+            }
+            catch (MemberPasswordInvalidException ex)
+            {
+                ModelState.AddModelError(nameof(data.Password), ex.Message);
+                return View(data);
+            }
+
+            TempData["message"] = "Email succesfully changed";
+            return RedirectToAction(nameof(Details));
+
+        }
     }
 }

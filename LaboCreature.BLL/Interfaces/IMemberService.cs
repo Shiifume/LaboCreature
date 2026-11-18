@@ -9,5 +9,6 @@ namespace LaboCreature.BLL.Interfaces
     {
        public MemberModel? GetById(int id);
         public void ChangeUsername(int id, string newUsername, string password);
+        public void ChangeEmail(int id, string newEmail, string password);
     }
 }

@@ -38,7 +38,7 @@ namespace LaboCreature.BLL.Services
             if (member is null)
                 throw new MemberNotFoundException("Member do not exist");
 
-            MemberEntity? existingMember = _repo.GetByUsername(newUsername.ToLower());
+            MemberEntity? existingMember = _repo.GetByUsername(newUsername.ToLower().Trim());
 
             if (existingMember is not null && existingMember.Username != member.Username)
                 throw new MemberUsernameAlreadyExistsException("Username taken");
@@ -47,6 +47,23 @@ namespace LaboCreature.BLL.Services
                 throw new MemberPasswordInvalidException("Invalid password");
 
             _repo.UpdateUsername(id, newUsername);
+        }
+
+        public void ChangeEmail(int id, string newEmail, string password)
+        {
+            MemberEntity? member = _repo.GetById(id);
+            if (member is null)
+                throw new MemberNotFoundException("Member do not exist"); 
+
+            MemberEntity? existingMember = _repo.GetByEmail(newEmail.ToLower().Trim());
+
+            if (existingMember is not null && existingMember.Email != member.Email)
+                throw new MemberEmailAlreadyExistsException("Email already in use");
+
+            if (!_hasher.Verify(password, member.PasswordHash))
+                throw new MemberPasswordInvalidException("Invalid password");
+
+            _repo.UpdateEmail(id, newEmail);
         }
     }
 }

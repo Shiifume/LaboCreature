@@ -9,6 +9,7 @@ namespace LaboCreature.WebApp.Models.Members
         [Required]
         [DataType(DataType.Text)]
         [MinLength(7, ErrorMessage = "Username must be at least 7 characters")]
+        [Display(Name = "New username")]
         public string NewUsername { get; set; } = null!;
 
         [Required]
