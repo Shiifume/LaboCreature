@@ -1,8 +1,9 @@
-﻿using System;
+﻿using LaboCreature.DAL.Entities;
+using LaboCreature.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using LaboCreature.DAL.Entities;
-using LaboCreature.DAL.Interfaces;
 
 
 
@@ -43,7 +44,7 @@ namespace LaboCreature.DAL.Repositories
 
         public MemberEntity? GetById(int id)
         {
-            return _context.Members.FirstOrDefault(m => m.Id == id);
+            return _context.Members.Include(m => m.Player).FirstOrDefault(m => m.Id == id);
         }
 
         public MemberEntity? GetByUsername(string username)
@@ -86,5 +87,7 @@ namespace LaboCreature.DAL.Repositories
             _context.SaveChanges();
             return true;
         }
+
+        
     }
 }

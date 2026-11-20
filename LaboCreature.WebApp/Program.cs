@@ -22,9 +22,11 @@ namespace LaboCreature.WebApp
             );
 
             builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+            builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
             builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IMemberService, MemberService>();
+            builder.Services.AddScoped<IPlayerService, PlayerService>();
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                             .AddCookie(options =>

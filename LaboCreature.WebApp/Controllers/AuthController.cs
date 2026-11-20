@@ -76,7 +76,7 @@ namespace LaboCreature.WebApp.Controllers
             {
                 int memberId = _authService.CreateMember(memberToRegister);
                 await CreateMemberSessionAsync(memberId, memberToRegister.Username, memberToRegister.Email);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Welcome", "Player");
             }
             catch(MemberEmailAlreadyExistsException e)
             {

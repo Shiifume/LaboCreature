@@ -14,7 +14,8 @@ namespace LaboCreature.BLL.Mappers
             {
                 Id = entity.Id,
                 Username = entity.Username,
-                Email = entity.Email
+                Email = entity.Email,
+                Player = entity.Player?.ToModel()
             };
         }
     }

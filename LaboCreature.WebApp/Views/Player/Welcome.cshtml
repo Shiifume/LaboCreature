@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Welcome";
+}
+
+<!-- STEP 1: Welcome and player creation -->
+<section id="createPlayerSection">
+    <h1>Welcome, adventurer!</h1>
+
+    <p>Your adventure is about to begin.</p>
+
+    <form id="createPlayerForm"
+        asp-controller="Player"
+        asp-action="CreatePlayer"
+        method="post">
+
+        @Html.AntiForgeryToken()
+
+        <button type="submit" id="createPlayerButton">
+            Create player
+        </button>
+    </form>
+
+    <p id="createPlayerMessage" hidden></p>
+</section>
+<!-- STEP 2 : Coins -->
+<section id="coinsSection" hidden>
+
+    <p>Get a little something to help start your adventure.</p>
+    <form id="getFirstCoins"
+        asp-controller="Player"
+        asp-action="AddFirstCoins"
+        method="post">
+
+        @Html.AntiForgeryToken()
+
+        <button type="submit" id="getFirstCoinsButton">
+            Get 100 coins
+        </button>
+    </form>
+
+    <p id="getCoinsMessage" hidden></p>
+
+</section>
+<!-- STEP 3 : Finished -->
+<section id="finishSection" hidden>
+    <h1>You're ready!</h1>
+    <p>Your adventure awaits!</p>
+
+    <a class="btn btn-primary"
+       asp-controller="Home"
+        asp-action="Index">
+        Start playing!
+    </a>
+</section>
+
+@section Scripts {
+    <script src="~/js/playerWelcome.js"
+            asp-append-version="true"></script>
+}
