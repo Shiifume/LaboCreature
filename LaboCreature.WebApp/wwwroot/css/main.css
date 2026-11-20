@@ -1,18 +1,39 @@
-﻿body {
-    margin: 0;
+﻿
+/* ==================================
+   GLOBAL STYLES
+================================== */
+
+* {
+    box-sizing: border-box;
 }
 
-/* Navbar banner */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #ead8b0;
+    color: #3b291f;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    padding: 30px 20px;
+}
+
+/* ==================================
+   NAVBAR
+================================== */
 
 .nav-banner {
     width: 100%;
     height: 160px;
-    background-image: url('/images/banner.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border: 2px #793515 solid;
-    box-sizing: border-box;
+    background: url('/images/banner.webp') center / cover no-repeat;
+    border: 2px solid #793515;
 }
 
 .navbar {
@@ -23,12 +44,10 @@
     gap: 12px;
     width: 100%;
     padding: 14px 24px;
-    box-sizing: border-box;
     background-color: #3b291f;
     border-top: 4px solid #a66b3f;
     border-bottom: 4px solid #793515;
     box-shadow: 0 5px 0 #241811;
-    font-family: 'Courier New', monospace;
     font-weight: bold;
 }
 
@@ -44,21 +63,22 @@
     margin-left: auto;
 }
 
-/* LINKS */
+.navbar a,
+.navbar button {
+    padding: 9px 14px;
+    color: #f5dfb5;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 3px 3px 0 #241811;
+}
 
 .navbar a {
     display: inline-block;
-    padding: 9px 14px;
-    color: #f5dfb5;
-    text-decoration: none;
-    font-size: 15px;
     background-color: #68452f;
     border: 2px solid #a66b3f;
-    box-shadow: 3px 3px 0 #241811;
-    transition: none;
+    text-decoration: none;
 }
-
-    /* HOVER */
 
     .navbar a:hover {
         color: #fff2cf;
@@ -68,17 +88,9 @@
         box-shadow: 4px 4px 0 #241811;
     }
 
-/* LOGOUT BUTTON */
-
 .navbar button {
-    padding: 9px 14px;
-    color: #f5dfb5;
-    font-family: inherit;
-    font-weight: bold;
-    font-size: 15px;
     background-color: #793515;
     border: 2px solid #b56b42;
-    box-shadow: 3px 3px 0 #241811;
     cursor: pointer;
 }
 
@@ -87,22 +99,15 @@
         border-color: #e0ad69;
     }
 
-/* LOGOUT FORM */
-
 .navbar form {
     margin: 0;
 }
 
-/* PLAYER MONEY */
-
 .navbar-right span {
-    color: #f5d77e;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
     padding: 8px;
+    color: #f5d77e;
+    font-weight: bold;
 }
-
-/* FOCUS ACCESSIBILITY */
 
 .navbar a:focus-visible,
 .navbar button:focus-visible {
@@ -110,21 +115,20 @@
     outline-offset: 4px;
 }
 
-/*FOOTER*/
-/* FOOTER - RETRO RPG STYLE */
+/* ==================================
+   FOOTER
+================================== */
 
 .game-footer {
     width: 100%;
-    box-sizing: border-box;
     margin-top: 40px;
     padding: 22px 20px;
     background-color: #3b291f;
     border-top: 4px solid #a66b3f;
     box-shadow: 0 -5px 0 #241811;
-    font-family: 'Courier New', monospace;
+    color: #c9a77b;
     font-size: 13px;
     font-weight: bold;
-    color: #c9a77b;
 }
 
 .footer-content {
@@ -140,46 +144,17 @@
 }
 
 .game-footer a {
-    color: #f5dfb5;
-    text-decoration: none;
     padding: 5px 9px;
+    color: #f5dfb5;
     border: 2px solid transparent;
+    text-decoration: none;
 }
 
     .game-footer a:hover {
         color: #fff2cf;
         background-color: #68452f;
-        border: 2px solid #a66b3f;
+        border-color: #a66b3f;
     }
-
-
-/*GENERAL BODY*/
-
-/* ==================================
-   GENERAL BODY
-================================== */
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: #ead8b0;
-    color: #3b291f;
-    font-family: 'Courier New', monospace;
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-main {
-    flex: 1;
-    width: 100%;
-    padding: 30px 20px;
-}
 
 /* ==================================
    CONTENT CONTAINERS
@@ -191,20 +166,29 @@ main {
     margin: 0 auto;
 }
 
-.game-panel {
+.game-panel,
+.game-panel-dark {
     padding: 25px;
-    margin-bottom: 25px;
-    background-color: #f5e8ca;
     border: 3px solid #a66b3f;
     box-shadow: 5px 5px 0 #68452f;
 }
 
+.game-panel {
+    margin-bottom: 25px;
+    background-color: #f5e8ca;
+}
+
 .game-panel-dark {
-    padding: 25px;
     background-color: #3b291f;
     color: #f5dfb5;
-    border: 3px solid #a66b3f;
     box-shadow: 5px 5px 0 #241811;
+}
+
+.game-card {
+    padding: 18px;
+    background-color: #f5e8ca;
+    border: 3px solid #95613d;
+    box-shadow: 4px 4px 0 #68452f;
 }
 
 /* ==================================
@@ -212,8 +196,7 @@ main {
 ================================== */
 
 .game-title {
-    margin-top: 0;
-    margin-bottom: 25px;
+    margin: 0 0 25px;
     color: #793515;
     font-size: 28px;
     font-weight: bold;
@@ -221,8 +204,7 @@ main {
 }
 
 .game-subtitle {
-    margin-top: 20px;
-    margin-bottom: 15px;
+    margin: 20px 0 15px;
     color: #95613d;
     font-size: 20px;
     font-weight: bold;
@@ -288,8 +270,22 @@ main {
    FORMS
 ================================== */
 
+.game-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.game-form-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
 .game-input {
     width: 100%;
+    max-width: 450px;
     padding: 10px;
     background-color: #fff8e8;
     color: #3b291f;
@@ -308,6 +304,54 @@ main {
     margin-bottom: 6px;
     color: #68452f;
     font-weight: bold;
+}
+
+/* ==================================
+   VALIDATION
+================================== */
+
+.game-validation-message,
+.game-validation-summary {
+    color: #793515;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+    .game-validation-summary:empty {
+        display: none;
+    }
+
+/* ==================================
+   MEMBER PROFILE
+================================== */
+
+.member-profile-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 5px;
+}
+
+.member-profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.member-profile-navigation {
+    margin-top: 25px;
+}
+
+/* ==================================
+   CREATURES
+================================== */
+
+.creatures-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 /* ==================================
@@ -332,13 +376,6 @@ main {
     font-weight: bold;
 }
 
-.game-card {
-    padding: 18px;
-    background-color: #f5e8ca;
-    border: 3px solid #95613d;
-    box-shadow: 4px 4px 0 #68452f;
-}
-
 /* ==================================
    RESPONSIVE
 ================================== */
@@ -360,75 +397,12 @@ main {
     .game-subtitle {
         font-size: 18px;
     }
-}
 
-
-/* Member Profile */
-
-.member-profile-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    padding: 15px 5px;
-}
-
-.member-profile-info {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.member-profile-navigation {
-    margin-top: 25px;
-}
-
-/* Responsive layout */
-@media (max-width: 600px) {
     .member-profile-row {
         flex-direction: column;
         align-items: flex-start;
     }
-}
 
-
-/* RPG Forms */
-
-.game-form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 20px;
-}
-
-.game-form-actions {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 20px;
-}
-
-/* Validation messages */
-
-.game-validation-message,
-.game-validation-summary {
-    color: #793515;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-    .game-validation-summary:empty {
-        display: none;
-    }
-
-/* Responsive form layout */
-
-.game-form-group .game-input {
-    width: 100%;
-    max-width: 450px;
-    box-sizing: border-box;
-}
-
-@media (max-width: 600px) {
     .game-form-actions {
         flex-direction: column;
     }
@@ -437,12 +411,3 @@ main {
             width: 100%;
         }
 }
-
-.creatures-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-

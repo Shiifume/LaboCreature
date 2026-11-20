@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Éléments de solution/">
     <File Path="global.json" />
+    <File Path="README.md" />
   </Folder>
   <Project Path="LaboCreature.BLL/LaboCreature.BLL.csproj" />
   <Project Path="LaboCreature.DAL/LaboCreature.DAL.csproj" />
