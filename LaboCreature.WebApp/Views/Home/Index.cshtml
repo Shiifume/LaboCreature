@@ -1,5 +1,31 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Welcome to LaboCreature";
 }
 
-<h1>Index for non-connected users</h1>
+<section class="game-panel home-panel">
+    <h1 class="game-title">Welcome to LaboCreature!</h1>
+
+    <p class="game-introduction">
+        Discover a world of unique creatures, choose your companions
+        and build your own collection!
+    </p>
+
+    <p>
+        Create your player, explore different races and start your adventure.
+        Your journey begins here!
+    </p>
+
+    <div class="home-buttons">
+        <a asp-controller="Auth"
+           asp-action="Login"
+           class="game-button">
+            Login
+        </a>
+
+        <a asp-controller="Auth"
+           asp-action="Register"
+           class="game-button">
+            Create an account
+        </a>
+    </div>
+</section>

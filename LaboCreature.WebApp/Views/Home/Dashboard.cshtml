@@ -1,4 +1,38 @@
 ﻿@model LaboCreature.WebApp.Models.Members.MemberView
 
-<h1>Dashboard de @Model.Username</h1>
+@{
+    var creatures = Model.Player?.Creatures?.ToList()
+                    ?? new List<LaboCreature.WebApp.Models.Creatures.CreatureView>();
+}
 
+<h1>Welcome, @Model.Username!</h1>
+
+<section class="game-panel">
+    <h2 class="game-subtitle">Your creatures</h2>
+
+    @if (creatures.Count == 0)
+    {
+        <p>You don't have any creatures yet.</p>
+
+        <a asp-controller="Player" asp-action="Welcome">
+            Create your first creature
+        </a>
+    }
+    else
+    {
+        <p>You have @creatures.Count creature(s)!</p>
+
+        <div class="creatures-container">
+            @foreach (var creature in creatures)
+            {
+                <div class="race-card creature-card">
+                    <img src="@creature.Race.FrontSprite"
+                         alt="@creature.Race.Name" />
+
+                    <p><strong>Nickname:</strong> @creature.Nickname</p>
+                    <p><strong>Race:</strong> @creature.Race.Name</p>
+                </div>
+            }
+        </div>
+    }
+</section>
