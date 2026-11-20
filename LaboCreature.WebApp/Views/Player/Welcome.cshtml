@@ -1,57 +1,93 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Welcome";
 }
 
-<!-- STEP 1: Welcome and player creation -->
-<section id="createPlayerSection">
-    <h1>Welcome, adventurer!</h1>
+<div class="game-container">
 
-    <p>Your adventure is about to begin.</p>
+    <!-- STEP 1: Welcome and player creation -->
+    <section id="createPlayerSection" class="game-panel">
 
-    <form id="createPlayerForm"
-        asp-controller="Player"
-        asp-action="CreatePlayer"
-        method="post">
+        <h1 class="game-title">Welcome, adventurer!</h1>
 
-        @Html.AntiForgeryToken()
+        <p class="game-text">
+            Your adventure is about to begin.
+        </p>
 
-        <button type="submit" id="createPlayerButton">
-            Create player
-        </button>
-    </form>
+        <div class="game-divider"></div>
 
-    <p id="createPlayerMessage" hidden></p>
-</section>
-<!-- STEP 2 : Coins -->
-<section id="coinsSection" hidden>
+        <form id="createPlayerForm"
+              asp-controller="Player"
+              asp-action="CreatePlayer"
+              method="post">
 
-    <p>Get a little something to help start your adventure.</p>
-    <form id="getFirstCoins"
-        asp-controller="Player"
-        asp-action="AddFirstCoins"
-        method="post">
+            @Html.AntiForgeryToken()
 
-        @Html.AntiForgeryToken()
+            <button type="submit"
+                    id="createPlayerButton"
+                    class="game-button">
+                Create player
+            </button>
 
-        <button type="submit" id="getFirstCoinsButton">
-            Get 100 coins
-        </button>
-    </form>
+        </form>
 
-    <p id="getCoinsMessage" hidden></p>
+        <p id="createPlayerMessage" class="game-text" hidden></p>
 
-</section>
-<!-- STEP 3 : Finished -->
-<section id="finishSection" hidden>
-    <h1>You're ready!</h1>
-    <p>Your adventure awaits!</p>
+    </section>
 
-    <a class="btn btn-primary"
-       asp-controller="Home"
-        asp-action="Index">
-        Start playing!
-    </a>
-</section>
+
+    <!-- STEP 2: Coins -->
+    <section id="coinsSection" class="game-panel" hidden>
+
+        <h2 class="game-subtitle">A little help to get started!</h2>
+
+        <p class="game-text">
+            Get a little something to help start your adventure.
+        </p>
+
+        <div class="game-divider"></div>
+
+        <form id="getFirstCoins"
+              asp-controller="Player"
+              asp-action="AddFirstCoins"
+              method="post">
+
+            @Html.AntiForgeryToken()
+
+            <button type="submit"
+                    id="getFirstCoinsButton"
+                    class="game-button">
+                Get 100 coins
+            </button>
+
+        </form>
+
+        <p id="getCoinsMessage" class="game-text" hidden></p>
+
+    </section>
+
+
+    <!-- STEP 3: Finished -->
+    <section id="finishSection" class="game-panel" hidden>
+
+        <h1 class="game-title">You're ready!</h1>
+
+        <p class="game-text">
+            Your adventure awaits!
+        </p>
+
+        <div class="game-divider"></div>
+
+        <a class="game-button"
+           asp-controller="Home"
+           asp-action="Index">
+            Start playing!
+        </a>
+
+    </section>
+
+</div>
+
 
 @section Scripts {
     <script src="~/js/playerWelcome.js"

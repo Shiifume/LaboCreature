@@ -4,49 +4,75 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>Register</h1>
+<div class="game-container">
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <h1 class="game-title">Register</h1>
+
+    <div class="game-panel">
+
+        <h2 class="game-subtitle">Create your adventurer account</h2>
+
+        <div class="game-divider"></div>
+
         <form asp-action="Register" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
+            <div asp-validation-summary="ModelOnly" class="game-validation-summary"></div>
 
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" id="username" />
-                <span asp-validation-for="Username" class="text-danger"></span>
-                <span id="usernameAvailability" class="small"></span>
+            <div class="game-form-group">
+                <label asp-for="Email" class="game-label"></label>
+                <input asp-for="Email" class="game-input" />
+                <span asp-validation-for="Email" class="game-validation-message"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
+            <div class="game-form-group">
+                <label asp-for="Username" class="game-label"></label>
+
+                <input asp-for="Username"
+                       class="game-input"
+                       id="username" />
+
+                <span asp-validation-for="Username"
+                      class="game-validation-message"></span>
+
+                <span id="usernameAvailability" class="game-validation-message"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="PasswordConfirm" class="control-label"></label>
-                <input asp-for="PasswordConfirm" class="form-control" />
-                <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+            <div class="game-form-group">
+                <label asp-for="Password" class="game-label"></label>
+                <input asp-for="Password" class="game-input" type="password" />
+                <span asp-validation-for="Password" class="game-validation-message"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Register" class="btn btn-primary" />
+
+            <div class="game-form-group">
+                <label asp-for="PasswordConfirm" class="game-label"></label>
+                <input asp-for="PasswordConfirm" class="game-input" type="password" />
+                <span asp-validation-for="PasswordConfirm" class="game-validation-message"></span>
             </div>
+
+            <div class="game-divider"></div>
+
+            <div class="game-form-actions">
+                <button type="submit" class="game-button">
+                    Register
+                </button>
+            </div>
+
         </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    </div>
+
+    <div class="member-profile-navigation">
+        <a asp-action="Index" asp-controller="Home" class="game-button-secondary">
+            Back to Home
+        </a>
+    </div>
+
 </div>
 
 @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
     <script src="~/js/usernameAvailability.js"></script>
 }

@@ -1,0 +1,439 @@
+﻿body {
+    margin: 0;
+}
+
+/* Navbar banner */
+
+.nav-banner {
+    width: 100%;
+    height: 160px;
+    background-image: url('/images/banner.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px #793515 solid;
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 24px;
+    box-sizing: border-box;
+    background-color: #3b291f;
+    border-top: 4px solid #a66b3f;
+    border-bottom: 4px solid #793515;
+    box-shadow: 0 5px 0 #241811;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+.navbar-left,
+.navbar-right {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.navbar-right {
+    margin-left: auto;
+}
+
+/* LINKS */
+
+.navbar a {
+    display: inline-block;
+    padding: 9px 14px;
+    color: #f5dfb5;
+    text-decoration: none;
+    font-size: 15px;
+    background-color: #68452f;
+    border: 2px solid #a66b3f;
+    box-shadow: 3px 3px 0 #241811;
+    transition: none;
+}
+
+    /* HOVER */
+
+    .navbar a:hover {
+        color: #fff2cf;
+        background-color: #95613d;
+        border-color: #e0ad69;
+        transform: translate(-1px, -1px);
+        box-shadow: 4px 4px 0 #241811;
+    }
+
+/* LOGOUT BUTTON */
+
+.navbar button {
+    padding: 9px 14px;
+    color: #f5dfb5;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: #793515;
+    border: 2px solid #b56b42;
+    box-shadow: 3px 3px 0 #241811;
+    cursor: pointer;
+}
+
+    .navbar button:hover {
+        background-color: #a34b29;
+        border-color: #e0ad69;
+    }
+
+/* LOGOUT FORM */
+
+.navbar form {
+    margin: 0;
+}
+
+/* PLAYER MONEY */
+
+.navbar-right span {
+    color: #f5d77e;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    padding: 8px;
+}
+
+/* FOCUS ACCESSIBILITY */
+
+.navbar a:focus-visible,
+.navbar button:focus-visible {
+    outline: 3px dashed #f5d77e;
+    outline-offset: 4px;
+}
+
+/*FOOTER*/
+/* FOOTER - RETRO RPG STYLE */
+
+.game-footer {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 40px;
+    padding: 22px 20px;
+    background-color: #3b291f;
+    border-top: 4px solid #a66b3f;
+    box-shadow: 0 -5px 0 #241811;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: bold;
+    color: #c9a77b;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-separator {
+    color: #95613d;
+}
+
+.game-footer a {
+    color: #f5dfb5;
+    text-decoration: none;
+    padding: 5px 9px;
+    border: 2px solid transparent;
+}
+
+    .game-footer a:hover {
+        color: #fff2cf;
+        background-color: #68452f;
+        border: 2px solid #a66b3f;
+    }
+
+
+/*GENERAL BODY*/
+
+/* ==================================
+   GENERAL BODY
+================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #ead8b0;
+    color: #3b291f;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    padding: 30px 20px;
+}
+
+/* ==================================
+   CONTENT CONTAINERS
+================================== */
+
+.game-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.game-panel {
+    padding: 25px;
+    margin-bottom: 25px;
+    background-color: #f5e8ca;
+    border: 3px solid #a66b3f;
+    box-shadow: 5px 5px 0 #68452f;
+}
+
+.game-panel-dark {
+    padding: 25px;
+    background-color: #3b291f;
+    color: #f5dfb5;
+    border: 3px solid #a66b3f;
+    box-shadow: 5px 5px 0 #241811;
+}
+
+/* ==================================
+   HEADINGS AND TEXT
+================================== */
+
+.game-title {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #793515;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.game-subtitle {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: #95613d;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.game-text {
+    color: #3b291f;
+    font-size: 16px;
+}
+
+.game-text-light {
+    color: #f5dfb5;
+}
+
+.game-text-gold {
+    color: #b58a35;
+    font-weight: bold;
+}
+
+/* ==================================
+   BUTTONS
+================================== */
+
+.game-button {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #68452f;
+    color: #f5dfb5;
+    border: 3px solid #a66b3f;
+    box-shadow: 3px 3px 0 #241811;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    .game-button:hover {
+        background-color: #95613d;
+        color: #fff2cf;
+        transform: translate(-1px, -1px);
+        box-shadow: 4px 4px 0 #241811;
+    }
+
+    .game-button:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 #241811;
+    }
+
+.game-button-secondary {
+    background-color: #ead8b0;
+    color: #68452f;
+    border-color: #95613d;
+}
+
+.game-button-danger {
+    background-color: #793515;
+    color: #fff2cf;
+    border-color: #b56b42;
+}
+
+/* ==================================
+   FORMS
+================================== */
+
+.game-input {
+    width: 100%;
+    padding: 10px;
+    background-color: #fff8e8;
+    color: #3b291f;
+    border: 2px solid #95613d;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+    .game-input:focus {
+        outline: 3px solid #d6ae60;
+        border-color: #793515;
+    }
+
+.game-label {
+    display: block;
+    margin-bottom: 6px;
+    color: #68452f;
+    font-weight: bold;
+}
+
+/* ==================================
+   DECORATIVE ELEMENTS
+================================== */
+
+.game-divider {
+    width: 100%;
+    height: 4px;
+    margin: 25px 0;
+    background-color: #a66b3f;
+    border: none;
+}
+
+.game-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: #68452f;
+    color: #f5dfb5;
+    border: 2px solid #a66b3f;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.game-card {
+    padding: 18px;
+    background-color: #f5e8ca;
+    border: 3px solid #95613d;
+    box-shadow: 4px 4px 0 #68452f;
+}
+
+/* ==================================
+   RESPONSIVE
+================================== */
+
+@media (max-width: 600px) {
+    main {
+        padding: 20px 12px;
+    }
+
+    .game-panel,
+    .game-panel-dark {
+        padding: 15px;
+    }
+
+    .game-title {
+        font-size: 22px;
+    }
+
+    .game-subtitle {
+        font-size: 18px;
+    }
+}
+
+
+/* Member Profile */
+
+.member-profile-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 5px;
+}
+
+.member-profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.member-profile-navigation {
+    margin-top: 25px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+    .member-profile-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+/* RPG Forms */
+
+.game-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.game-form-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+/* Validation messages */
+
+.game-validation-message,
+.game-validation-summary {
+    color: #793515;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+    .game-validation-summary:empty {
+        display: none;
+    }
+
+/* Responsive form layout */
+
+.game-form-group .game-input {
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    .game-form-actions {
+        flex-direction: column;
+    }
+
+        .game-form-actions .game-button {
+            width: 100%;
+        }
+}

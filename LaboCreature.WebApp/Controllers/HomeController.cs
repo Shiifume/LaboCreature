@@ -1,4 +1,5 @@
 using LaboCreature.WebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,6 +9,15 @@ namespace LaboCreature.WebApp.Controllers
     {
         public IActionResult Index()
         {
+            if (User.Identity?.IsAuthenticated == true)
+                return RedirectToAction(nameof(Dashboard));
+            else
+                return View();
+        }
+
+        [Authorize]
+        public IActionResult Dashboard()
+        {
             return View();
         }
 
@@ -16,5 +26,7 @@ namespace LaboCreature.WebApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }

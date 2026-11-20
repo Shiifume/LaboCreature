@@ -4,37 +4,74 @@
     ViewData["Title"] = "Member Profile";
 }
 
-<h1>Member Profile</h1>
+<div class="game-container">
 
-<div>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-        <dd>
-            <a asp-action="ChangeUsername" asp-controller="Member">Change username</a>
-        </dd>
-    </dl>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dd>
-            <a asp-action="ChangeEmail" asp-controller="Member">Change email</a>
-        </dd>
-    </dl>
-    <dl>
-        <dd>
-            <a asp-action="ChangePassword" asp-controller="Member">Change password</a>
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Index" asp-controller="Home">Back to Home</a>
+    <h1 class="game-title">Member Profile</h1>
+
+    <div class="game-panel">
+
+        <h2 class="game-subtitle">Account Information</h2>
+
+        <div class="game-divider"></div>
+
+        <div class="member-profile-row">
+            <div class="member-profile-info">
+                <span class="game-label">
+                    @Html.DisplayNameFor(model => model.Username)
+                </span>
+                <span class="game-text">
+                    @Html.DisplayFor(model => model.Username)
+                </span>
+            </div>
+
+            <a asp-action="ChangeUsername"
+               asp-controller="Member"
+               class="game-button-secondary">
+                Change username
+            </a>
+        </div>
+
+        <div class="game-divider"></div>
+
+        <div class="member-profile-row">
+            <div class="member-profile-info">
+                <span class="game-label">
+                    @Html.DisplayNameFor(model => model.Email)
+                </span>
+                <span class="game-text">
+                    @Html.DisplayFor(model => model.Email)
+                </span>
+            </div>
+
+            <a asp-action="ChangeEmail"
+               asp-controller="Member"
+               class="game-button-secondary">
+                Change email
+            </a>
+        </div>
+
+        <div class="game-divider"></div>
+
+        <div class="member-profile-row">
+            <span class="game-label">
+                Password
+            </span>
+
+            <a asp-action="ChangePassword"
+               asp-controller="Member"
+               class="game-button-secondary">
+                Change password
+            </a>
+        </div>
+
+    </div>
+
+    <div class="member-profile-navigation">
+        <a asp-action="Index"
+           asp-controller="Home"
+           class="game-button">
+            Back to Home
+        </a>
+    </div>
+
 </div>
