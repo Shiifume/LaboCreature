@@ -35,4 +35,10 @@ namespace LaboCreature.BLL.Exceptions
         public PlayerAlreadyInMember() : base() { }
         public PlayerAlreadyInMember(string message) : base(message) { }
     }
+
+    public class PlayerHasReachedMaxCreatures : PlayerException
+    {
+        public PlayerHasReachedMaxCreatures() : base() { }
+        public PlayerHasReachedMaxCreatures(string message) : base(message) { }
+    }
 }

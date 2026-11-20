@@ -21,6 +21,38 @@ namespace LaboCreature.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("LaboCreature.DAL.Entities.CreatureEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .IsUnicode(true)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<int>("PlayerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RaceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id")
+                        .HasName("PK_Creature");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
+
+                    b.HasIndex("PlayerId");
+
+                    b.HasIndex("RaceId");
+
+                    b.ToTable("Creature", (string)null);
+                });
+
             modelBuilder.Entity("LaboCreature.DAL.Entities.MemberEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -79,6 +111,85 @@ namespace LaboCreature.DAL.Migrations
                     b.ToTable("Player", (string)null);
                 });
 
+            modelBuilder.Entity("LaboCreature.DAL.Entities.RaceEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FrontSprite")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id")
+                        .HasName("PK_Race");
+
+                    SqlServerKeyBuilderExtensions.IsClustered(b.HasKey("Id"));
+
+                    b.ToTable("Race", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FrontSprite = "/images/waterthingy.png",
+                            Name = "Water Thingy"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FrontSprite = "/images/commonfox.png",
+                            Name = "Common Fox"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FrontSprite = "/images/firechicken.png",
+                            Name = "Fire Chicken"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            FrontSprite = "/images/purpledraco.png",
+                            Name = "Purple Draco"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            FrontSprite = "/images/weirdpenguin.png",
+                            Name = "Weird Penguin"
+                        });
+                });
+
+            modelBuilder.Entity("LaboCreature.DAL.Entities.CreatureEntity", b =>
+                {
+                    b.HasOne("LaboCreature.DAL.Entities.PlayerEntity", "Player")
+                        .WithMany("Creatures")
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_Creature_Player");
+
+                    b.HasOne("LaboCreature.DAL.Entities.RaceEntity", "Race")
+                        .WithMany()
+                        .HasForeignKey("RaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_Creature_Race");
+
+                    b.Navigation("Player");
+
+                    b.Navigation("Race");
+                });
+
             modelBuilder.Entity("LaboCreature.DAL.Entities.PlayerEntity", b =>
                 {
                     b.HasOne("LaboCreature.DAL.Entities.MemberEntity", "Member")
@@ -94,6 +205,11 @@ namespace LaboCreature.DAL.Migrations
             modelBuilder.Entity("LaboCreature.DAL.Entities.MemberEntity", b =>
                 {
                     b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("LaboCreature.DAL.Entities.PlayerEntity", b =>
+                {
+                    b.Navigation("Creatures");
                 });
 #pragma warning restore 612, 618
         }

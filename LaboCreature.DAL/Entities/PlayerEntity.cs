@@ -11,5 +11,6 @@ namespace LaboCreature.DAL.Entities
         public int Money { get; set; }
         public int MemberId { get; set; }
         public MemberEntity Member { get; set; } = null!;
+        public List<CreatureEntity> Creatures { get; set; } = new();
     }
 }

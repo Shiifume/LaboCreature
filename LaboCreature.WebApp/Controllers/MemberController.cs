@@ -1,5 +1,6 @@
 ﻿using LaboCreature.BLL.Exceptions;
 using LaboCreature.BLL.Interfaces;
+using LaboCreature.BLL.Models;
 using LaboCreature.BLL.Services;
 using LaboCreature.WebApp.Mappers;
 using LaboCreature.WebApp.Models.Members;
@@ -21,11 +22,21 @@ namespace LaboCreature.WebApp.Controllers
         }
 
         [Authorize]
-        public IActionResult Details()
+        public async Task<IActionResult> Details()
         {
             int id = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
 
-            MemberView memberToShow = _memberService.GetById(id)!.ToModelView();
+            MemberModel? member = _memberService.GetById(id);
+
+            if(member is null)
+            {
+                await HttpContext.SignOutAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme
+                );
+                return RedirectToAction("Index", "Home");
+            }
+
+            MemberView memberToShow = member.ToModelView();
             
             return View(memberToShow);
         }

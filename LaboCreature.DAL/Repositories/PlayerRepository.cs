@@ -28,6 +28,11 @@ namespace LaboCreature.DAL.Repositories
             return _context.Players.SingleOrDefault(p => p.MemberId == memberId);
         }
 
+        public PlayerEntity? GetById(int id)
+        {
+            return _context.Players.SingleOrDefault(p => p.Id == id);
+        }
+
         public bool UpdateMoney(int memberId, int amountModification)
         {
             PlayerEntity? playerToUdate = _context.Players.SingleOrDefault(p => p.MemberId == memberId);

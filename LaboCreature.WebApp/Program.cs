@@ -27,6 +27,10 @@ namespace LaboCreature.WebApp
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IPlayerService, PlayerService>();
+            builder.Services.AddScoped<IRaceRepository, RaceRepository>();
+            builder.Services.AddScoped<IRaceService, RaceService>();
+            builder.Services.AddScoped<ICreatureRepository, CreatureRepository>();
+            builder.Services.AddScoped<ICreatureService, CreatureService>();
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                             .AddCookie(options =>

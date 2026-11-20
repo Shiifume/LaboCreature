@@ -15,12 +15,16 @@ namespace LaboCreature.WebApp.Controllers
     {
 
         private IPlayerService _playerService;
+        private IRaceService _raceService;
+        private ICreatureService _creatureService;
 
         private const int _startingCoins = 100;
 
-        public PlayerController(IPlayerService playerService)
+        public PlayerController(IPlayerService playerService, IRaceService raceService, ICreatureService creatureService)
         {
             _playerService = playerService;
+            _raceService = raceService;
+            _creatureService = creatureService;
         }
 
         
@@ -73,6 +77,61 @@ namespace LaboCreature.WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public IActionResult CreateCreature(int raceId, string nickname)
+        {
+            if (string.IsNullOrWhiteSpace(nickname))
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "Please enter a name for your creature."
+                });
+            }
+
+            int memberId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+
+            PlayerModel? player = _playerService.GetByMemberId(memberId);
+
+            if (player is null)
+            {
+                return Json(new
+                {
+                    success = false,
+                    redirectUrl = Url.Action("Welcome", "Player")
+                });
+            }
+
+            try
+            {
+                _creatureService.CreateCreature(player.Id, raceId, nickname);
+
+                return Json(new
+                {
+                    success = true,
+                    message = "Your creature has been created!"
+                });
+            }
+            catch (PlayerHasReachedMaxCreatures)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "You can only have 3 creatures."
+                });
+            }
+            catch (RaceNotFoundException)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "The selected race doesn't exist."
+                });
+            }
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddFirstCoins()
         {
             int memberId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value!);
@@ -95,6 +154,17 @@ namespace LaboCreature.WebApp.Controllers
                     redirectUrl = Url.Action("Welcome", "Player")
                 });
             }
+        }
+
+        [HttpGet]
+        public IActionResult GetRandomRaces()
+        {
+            var races = _raceService.GetAll()
+                .OrderBy(_ => Random.Shared.Next())
+                .Take(3)
+                .ToList();
+
+            return Json(races);
         }
     }
 }

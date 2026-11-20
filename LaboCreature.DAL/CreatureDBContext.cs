@@ -13,6 +13,8 @@ namespace LaboCreature.DAL
 
         public DbSet<MemberEntity> Members { get; set; }
         public DbSet<PlayerEntity> Players { get; set; }
+        public DbSet<RaceEntity> Races { get; set; }
+        public DbSet<CreatureEntity> Creatures { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

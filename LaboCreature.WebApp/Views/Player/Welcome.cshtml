@@ -35,8 +35,41 @@
 
     </section>
 
+    <!-- STEP 2 : Choose creature -->
+    <section id="creatureSection" class="game-panel" hidden>
+        <h2 class="game-subtitle">Choose your creature</h2>
+         <p>Select a race and give your new companion a name.</p>
 
-    <!-- STEP 2: Coins -->
+           <form id="chooseCreatureForm"
+          asp-controller="Player"
+          asp-action="CreateCreature"
+          method="post">
+
+                @Html.AntiForgeryToken()
+
+                <div id="raceSelection" class="race-selection"></div>
+
+                <div class="nickname-container">
+                    <label for="nickname">Your creature's name</label>
+                    <input type="text"
+                           id="nickname"
+                           name="nickname"
+                           maxlength="80"
+                           required
+                           placeholder="Give your creature a name..." />
+                </div>
+
+                <button type="submit" id="chooseCreatureButton" disabled>
+                    Choose my creature
+                </button>
+
+                <p id="chooseCreatureMessage" hidden></p>
+
+            </form>
+
+    </section>
+
+    <!-- STEP 3: Coins -->
     <section id="coinsSection" class="game-panel" hidden>
 
         <h2 class="game-subtitle">A little help to get started!</h2>
@@ -67,7 +100,7 @@
     </section>
 
 
-    <!-- STEP 3: Finished -->
+    <!-- STEP 4: Finished -->
     <section id="finishSection" class="game-panel" hidden>
 
         <h1 class="game-title">You're ready!</h1>
