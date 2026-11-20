@@ -14,7 +14,7 @@ namespace LaboCreature.BLL.Mappers
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                Player = entity.Player.ToModel(),
+                PlayerId = entity.PlayerId,
                 Race = entity.Race.ToModel()
             };
         }
@@ -25,10 +25,8 @@ namespace LaboCreature.BLL.Mappers
             {
                 Id = model.Id,
                 Name = model.Name,
-                PlayerId = model.Player.Id,
-                Player = model.Player.ToEntity(),
-                RaceId = model.Race.Id,
-                Race = model.Race.ToEntity()
+                PlayerId = model.PlayerId,
+                RaceId = model.Race.Id
             };
         }
     }

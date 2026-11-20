@@ -13,7 +13,9 @@ namespace LaboCreature.BLL.Mappers
             return new PlayerModel
             {
                 Id = entity.Id,
-                Money = entity.Money
+                Money = entity.Money,
+                MemberId = entity.MemberId,
+                Creatures = entity.Creatures.Select(e => e.ToModel()).ToList()
             };
         }
 
@@ -21,7 +23,9 @@ namespace LaboCreature.BLL.Mappers
         {
             return new PlayerEntity
             {
-                Money = model.Money
+                Id = model.Id,
+                Money = model.Money,
+                MemberId = model.MemberId
             };
         }
     }

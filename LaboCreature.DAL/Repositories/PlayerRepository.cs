@@ -1,8 +1,6 @@
 ﻿using LaboCreature.DAL.Entities;
 using LaboCreature.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace LaboCreature.DAL.Repositories
 {

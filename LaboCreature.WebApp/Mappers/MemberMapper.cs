@@ -20,7 +20,8 @@ namespace LaboCreature.WebApp.Mappers
             {
                 Id = member.Id,
                 Email = member.Email,
-                Username = member.Username
+                Username = member.Username,
+                Player = member.Player?.ToView()
             };
         }
     }

@@ -8,7 +8,7 @@ namespace LaboCreature.BLL.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;
+        public int PlayerId { get; set; }
         public RaceModel Race { get; set; } = null!;
-        public PlayerModel Player { get; set; } = null!;
     }
 }

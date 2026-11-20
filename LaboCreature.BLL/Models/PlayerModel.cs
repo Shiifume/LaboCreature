@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LaboCreature.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -9,5 +10,7 @@ namespace LaboCreature.BLL.Models
     {
         public int Id { get; set; }
         public int Money { get; set; }
+        public int MemberId { get; set; }
+        public List<CreatureModel> Creatures { get; set; } = new();
     }
 }

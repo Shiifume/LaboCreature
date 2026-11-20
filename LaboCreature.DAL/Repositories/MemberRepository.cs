@@ -45,7 +45,8 @@ namespace LaboCreature.DAL.Repositories
         public MemberEntity? GetById(int id)
         {
             return _context.Members.Include(m => m.Player)
-                .ThenInclude(p => p.Creatures)                
+                .ThenInclude(p => p.Creatures)
+                .ThenInclude(c => c.Race)
                 .FirstOrDefault(m => m.Id == id);
         }
 
